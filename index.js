@@ -27,6 +27,19 @@ const upload = multer({
   limits: { files: 1000 }, // Limit the number of files to 1000
 });
 
+// Middleware to measure request handling time
+app.use((req, res, next) => {
+  const start = process.hrtime();
+
+  res.on("finish", () => {
+    const [seconds, nanoseconds] = process.hrtime(start);
+    const duration = seconds * 1000 + nanoseconds / 1e6; // Convert to milliseconds
+    console.log(`${req.method} ${req.originalUrl} - ${duration.toFixed(2)} ms`);
+  });
+
+  next();
+});
+
 // Serve the index.html file
 app.use(express.static(path.join(__dirname, "public")));
 
