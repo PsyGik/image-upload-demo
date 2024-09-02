@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Upload</title>
+  </head>
+  <body>
+    <h1>Generate and Upload Images</h1>
+    <button id="generateAndUpload">Generate and Upload 1000 Images</button>
+    </body>
+    <form
+      id="uploadForm"
+      action="http://localhost:3000/upload"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <input
+        type="file"
+        name="images"
+        id="imageInput"
+        multiple
+        accept="image/*"
+        style="display: none"
+      />
+      <button type="submit">Upload Images</button>
+    </form>
+    <script src="script.js"></script>
+  </body>
+</html>
